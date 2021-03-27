@@ -26,6 +26,9 @@ from youtube_dl.utils import (
 
 
 
+from TamilBots.events import register
+from TamilBots.utils import progress
+
 try:
     from youtubesearchpython import SearchVideos
 
@@ -34,15 +37,15 @@ except:
     from youtubesearchpython import SearchVideos
 
 
-@app.on_message(pattern="^/video (.*)")
+@register(pattern="^/vdo (.*)")
 async def download_video(v_url):
     lazy = v_url
     sender = await lazy.get_sender()
     me = await lazy.client.get_me()
     if not sender.id == me.id:
-        rkp = await lazy.reply("`processing...`")
+        rkp = await lazy.reply("**processing...**")
     else:
-        rkp = await lazy.edit("`processing...`")
+        rkp = await lazy.edit("**processing...**")
     url = v_url.pattern_match.group(1)
     if not url:
         return await rkp.edit("`Error \nusage song <song name>`")
@@ -55,7 +58,7 @@ async def download_video(v_url):
     except:
         return await rkp.edit("`failed to find`")
     type = "audio"
-    await rkp.edit("`Preparing to download...`")
+    await rkp.edit("**Preparing to download...**")
     if type == "audio":
         opts = {
             "format": "best",
@@ -74,7 +77,7 @@ async def download_video(v_url):
         song = False
         video = True
     try:
-        await rkp.edit("`Fetching data, please wait..`")
+        await rkp.edit("**Downloading My Sever Pleas Wait 😊**")
         with YoutubeDL(opts) as rip:
             rip_data = rip.extract_info(url)
     except DownloadError as DE:
