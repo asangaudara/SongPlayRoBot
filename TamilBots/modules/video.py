@@ -34,7 +34,7 @@ except:
     from youtubesearchpython import SearchVideos
 
 
-@register(pattern="^/video (.*)")
+@app.on_message(pattern="^/video (.*)")
 async def download_video(v_url):
     lazy = v_url
     sender = await lazy.get_sender()
