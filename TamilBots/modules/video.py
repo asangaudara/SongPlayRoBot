@@ -2,6 +2,14 @@ import asyncio
 import json
 import os
 import time
+from pyrogram import Client, filters
+from pytube import YouTube
+from pyrogram.types import InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton
+from youtubesearchpython import VideosSearch
+from TamilBots.TamilBots import ignore_blacklisted_users, get_arg
+from TamilBots import app, LOGGER
+from TamilBots.sql.chat_sql import add_chat_to_db
 
 from telethon.tl.types import DocumentAttributeAudio
 from youtube_dl import YoutubeDL
@@ -16,8 +24,7 @@ from youtube_dl.utils import (
     XAttrMetadataError,
 )
 
-from TamilBots.events import register
-from TamilBots.utils import progress
+
 
 try:
     from youtubesearchpython import SearchVideos
