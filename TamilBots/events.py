@@ -1,6 +1,6 @@
 from telethon import events
 
-from DaisyX import telethn
+from TamilBots import telethn
 
 
 def register(**args):
